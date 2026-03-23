@@ -1,67 +1,54 @@
-# Title:
-MediSched: An Intelligent Cloud-Based Scheduling and SMS Notification Solution for Samuel P. Dizon Medical Clinic. 
+# MediSched: An Intelligent Cloud-Based Scheduling and SMS Notification Solution for Samuel P. Dizon Medical Clinic. 
 
-## React Compiler
+## by Team SMTech | BSIT-3E
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Mark Christian Gabriel
+2. John Rayniel Bonifacio
 
-## Expanding the ESLint configuration
+CAPSTONE Adviser:
+Mr. Reynaldo Bautista Jr.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Target Beneficiary:
+Samuel P. Dizon Medical Clinic Staffs & Patients 
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Problem Scenario (The Pain Point): 
+The clinic's current operations are hindered by a reliance on paper-based and basic digital records, which complicates the immediate retrieval of patient 
+histories and the tracking of treatment progress. These manual workflows become particularly burdensome during peak hours, creating administrative bottlenecks 
+that result in extended wait times and heightened stress for both staff and patients. Furthermore, an appointment process restricted to phone calls and text messages 
+leads to frequent communication delays and limits accessibility for patients who require rapid scheduling. 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Proposed Solution: 
+The proposed system features an online booking portal that allows patients to schedule appointments 24/7 from any device based on live availability. To enhance 
+efficiency, automated schedule management uses smart algorithms to eliminate double-bookings and reduce no-shows through automated reminders. Furthermore, digital 
+patient records ensure that health data is securely maintained in a repository accessible only to credentialed personnel. Finally, a unified admin dashboard provides 
+clinic staff with real-time oversight of daily operations and the ability to generate comprehensive analytical reports. 
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech Stack:
+Frontend/Mobile: React 
+Backend: Node.js
+Database: Supabase 
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## UN SDG Alignment: 
+- SDG 3: Good Health & Well Being 
+- SDG 8: Decent Work and Economic Growth 
+- SDG 9: Industry, Innovation & Infrastructure 
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# System Features
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Automated SMS Notification System: 
+   For sending automated reminders and booking confirmations.
+
+2. 24/7 Appointment Booking Engine: 
+   The core portal for patients to select dates, times, and services based on live availability.
+
+3. Patient Portal: 
+   A dedicated dashboard for patients to view upcoming appointments, history, and personal details.
+
+4. Comprehensive Admin & Staff Dashboard: 
+   A unified control center for managing operations, real-time queue oversight, and generating analytical reports.
+
+5. Secure Electronic Patient Records (EMR): 
+   A digital repository for securely maintaining patient health data and history.
+
+6. Smart Scheduling & Conflict Resolution: 
+   The AI/algorithm component dedicated to eliminating double-bookings, reducing no-shows, and optimizing appointment slots.
