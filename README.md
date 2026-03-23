@@ -24,9 +24,9 @@ patient records ensure that health data is securely maintained in a repository a
 clinic staff with real-time oversight of daily operations and the ability to generate comprehensive analytical reports. 
 
 ## Tech Stack:
-Frontend/Mobile: React 
-Backend: Node.js
-Database: Supabase 
+- Frontend: React 
+- Backend: Node.js
+- Database: Supabase 
 
 ## UN SDG Alignment: 
 - SDG 3: Good Health & Well Being 
