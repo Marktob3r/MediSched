@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
-import { Menu, X, HeartPulse, Calendar } from "lucide-react";
+import { Menu, X, HeartPulse} from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useAuth } from "../../context/AuthContext";
 
@@ -12,7 +12,7 @@ export function PublicNavbar() {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "Book Appointment", href: "/book" },
+    // { label: "Book Appointment", href: "/book" },
     { label: "About", href: "/#about" },
     { label: "Contact", href: "/#contact" },
   ];
@@ -68,16 +68,9 @@ export function PublicNavbar() {
               <>
                 <Link
                   to="/login"
-                  className="text-sm font-semibold text-green-700 hover:text-green-800 transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/book"
                   className="bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition-all shadow-sm flex items-center gap-2"
                 >
-                  <Calendar className="w-4 h-4" />
-                  Book Now
+                  Sign Up
                 </Link>
               </>
             )}
@@ -122,7 +115,7 @@ export function PublicNavbar() {
                 ) : (
                   <>
                     <Link to="/login" className="block px-3 py-2 rounded-lg text-sm font-semibold text-green-700 hover:bg-green-50" onClick={() => setOpen(false)}>Login</Link>
-                    <Link to="/book" className="block px-3 py-2 rounded-lg text-sm font-semibold bg-green-600 text-white text-center hover:bg-green-700" onClick={() => setOpen(false)}>Book Appointment</Link>
+                    {/* <Link to="/book" className="block px-3 py-2 rounded-lg text-sm font-semibold bg-green-600 text-white text-center hover:bg-green-700" onClick={() => setOpen(false)}>Book Appointment</Link> */}
                   </>
                 )}
               </div>

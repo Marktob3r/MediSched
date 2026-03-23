@@ -1,14 +1,14 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import {
-  Calendar, Clock, Shield, Smartphone, ChevronRight,
-  Phone, MapPin, Mail, Star, CheckCircle, HeartPulse,
+  Calendar, Clock, Shield, Smartphone,
+  Phone, MapPin, Mail, CheckCircle, HeartPulse,
   Users, Activity, Bell
 } from "lucide-react";
 import { PublicNavbar } from "../layout/PublicNavbar";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1761853320977-bcd046cfaea9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtZWRpY2FsJTIwY2xpbmljJTIwcmVjZXB0aW9uJTIwZ3JlZW58ZW58MXx8fHwxNzc0MjI5OTAyfDA&ixlib=rb-4.1.0&q=80&w=1080";
-const DOCTOR_IMG = "https://images.unsplash.com/photo-1758691462126-2ee47c8bf9e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2N0b3IlMjBwYXRpZW50JTIwY29uc3VsdGF0aW9uJTIwaGVhbHRoY2FyZXxlbnwxfHx8fDE3NzQxNDI3ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080";
+const DOCTOR_IMG = "src/assets/doc.jpg";
 
 const features = [
   { icon: Calendar, title: "24/7 Online Booking", desc: "Book appointments anytime, anywhere without calling the clinic." },
@@ -18,25 +18,26 @@ const features = [
 ];
 
 const steps = [
-  { num: "01", title: "Create Account or Book as Guest", desc: "Register in minutes or book directly without an account." },
+  { num: "01", title: "Create Account", desc: "Register in minutes." },
   { num: "02", title: "Choose Date & Time", desc: "Browse available slots and pick what works best for you." },
   { num: "03", title: "Receive Confirmation", desc: "Get an instant SMS confirmation with your appointment details." },
   { num: "04", title: "Visit the Clinic", desc: "Arrive at your scheduled time — no waiting in line to register." },
 ];
 
 const services = [
-  "General Consultation",
-  "Prenatal Check-up",
-  "Pediatric Care",
-  "Physical Examination",
-  "Diabetes Management",
-  "Laboratory Requests",
-  "Hypertension Management",
-  "Senior Citizen Care",
+  "Heart and Blood Pressure Management",
+  "Diet and Natural Lifestyle",
+  "Diabetes Rehabilitation",
+  "Kidney Integrative Analysis",
+  "Liver Rejuvenation",
+  "Brain and Nerve Rejuvenation",
+  "Lung Rehabilitation",
+  "Physical Pain Management",
+  "And more..."
 ];
 
 const stats = [
-  { icon: Users, value: "2,500+", label: "Patients Served" },
+  { icon: Users, value: "1,000+", label: "Patients Served" },
   { icon: Calendar, value: "98%", label: "On-Time Rate" },
   { icon: Activity, value: "15+", label: "Years Experience" },
   { icon: Bell, value: "24/7", label: "Online Booking" },
@@ -44,7 +45,7 @@ const stats = [
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-white font-[Montserrat]">
+    <div className="min-h-screen bg-white font-[Montserrat] select-none overflow-x-hidden">
       <PublicNavbar />
 
       {/* Hero Section */}
@@ -73,7 +74,7 @@ export function LandingPage() {
               <p className="text-green-100 text-lg sm:text-xl mb-8 leading-relaxed">
                 Book appointments online 24/7, receive instant SMS notifications, and experience hassle-free healthcare at Samuel P. Dizon Medical Clinic.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              {/* <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/book"
                   className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-green-500/30 text-lg"
@@ -88,7 +89,7 @@ export function LandingPage() {
                   Patient Login
                   <ChevronRight className="w-5 h-5" />
                 </Link>
-              </div>
+              </div> */}
 
               {/* Quick Info */}
               <div className="mt-10 flex flex-wrap gap-6">
@@ -221,15 +222,15 @@ export function LandingPage() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <Link
-              to="/book"
+              to="/login"
               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg"
             >
               <Calendar className="w-5 h-5" />
-              Get Started — Book Now
+              Get Started — Sign Up Now!
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -243,16 +244,7 @@ export function LandingPage() {
               viewport={{ once: true }}
             >
               <div className="relative">
-                <img src={DOCTOR_IMG} alt="Doctor" className="rounded-2xl shadow-xl w-full object-cover h-96" />
-                <div className="absolute -bottom-6 -right-6 bg-green-600 rounded-2xl p-5 shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <Star className="w-8 h-8 text-yellow-300 fill-yellow-300" />
-                    <div>
-                      <p className="text-white font-extrabold text-2xl">4.9</p>
-                      <p className="text-green-200 text-sm">Patient Rating</p>
-                    </div>
-                  </div>
-                </div>
+                <img src={DOCTOR_IMG} alt="Doctor" className="rounded-2xl shadow-xl w-full object-cover h-96" draggable="false" />
               </div>
             </motion.div>
             <motion.div
@@ -291,12 +283,12 @@ export function LandingPage() {
               Join thousands of patients who schedule smarter with MediSched.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/book" className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-8 py-4 rounded-xl hover:bg-green-50 transition-all shadow-lg text-lg">
+              {/* <Link to="/book" className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-bold px-8 py-4 rounded-xl hover:bg-green-50 transition-all shadow-lg text-lg">
                 <Calendar className="w-5 h-5" />
                 Book Appointment
-              </Link>
+              </Link> */}
               <Link to="/login" className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-lg">
-                Sign In
+                Sign Up Now!
               </Link>
             </div>
           </motion.div>
@@ -321,7 +313,7 @@ export function LandingPage() {
             <div>
               <h4 className="text-white font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                {["Book Appointment", "Patient Login", "Admin Login"].map((item) => (
+                {["Patient Login", "Admin Login"].map((item) => (
                   <li key={item}>
                     <Link to={item === "Book Appointment" ? "/book" : "/login"} className="text-gray-400 hover:text-green-400 text-sm transition-colors">{item}</Link>
                   </li>
@@ -333,26 +325,26 @@ export function LandingPage() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3 text-gray-400 text-sm">
                   <MapPin className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>123 Magsaysay Blvd., Quezon City, Metro Manila</span>
+                  <span>2nd Floor Centrepoint Building, Magsaysay Drive Rizal Avenue, East Tapinac, Olongapo City</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 text-sm">
                   <Phone className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span>(02) 8123-4567 / +63 917 123 4567</span>
+                  <span>0950 331 3347</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 text-sm">
                   <Mail className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span>info@spdclinic.com</span>
+                  <span>thebuj29@yahoo.com</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 text-sm">
                   <Clock className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span>Mon–Fri: 8:00 AM – 5:00 PM</span>
+                  <span>Mon–Thurs: 9:00 AM – 5:00 PM<br />Friday: 9:00 AM – 4:00 PM</span>
                 </li>
               </ul>
-            </div>
+            </div>  
           </div>
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-500 text-sm">
-              © 2026 Samuel P. Dizon Medical Clinic. All rights reserved. Powered by MediSched.
+              © 2026 Samuel P. Dizon Medical Clinic. All rights reserved.
             </p>
           </div>
         </div>
