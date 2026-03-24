@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import {
   Calendar, Clock, Shield, Smartphone,
   Phone, MapPin, Mail, CheckCircle, HeartPulse,
-  Users, Activity, Bell
+  Users, Activity, Bell 
 } from "lucide-react";
 import { PublicNavbar } from "../layout/PublicNavbar";
 
@@ -13,14 +13,14 @@ const DOCTOR_IMG = "src/assets/doc.jpg";
 const features = [
   { icon: Calendar, title: "24/7 Online Booking", desc: "Book appointments anytime, anywhere without calling the clinic." },
   { icon: Shield, title: "No Double-Bookings", desc: "Smart scheduling prevents conflicts and guarantees your slot." },
-  { icon: Smartphone, title: "SMS Notifications", desc: "Receive instant confirmations and reminders via text message." },
+  { icon: Smartphone, title: "Instant Notifications", desc: "Receive instant confirmations and reminders via email or push notifications." },
   { icon: Clock, title: "Real-Time Updates", desc: "Stay informed with live appointment status and schedule changes." },
 ];
 
 const steps = [
   { num: "01", title: "Create Account", desc: "Register in minutes." },
   { num: "02", title: "Choose Date & Time", desc: "Browse available slots and pick what works best for you." },
-  { num: "03", title: "Receive Confirmation", desc: "Get an instant SMS confirmation with your appointment details." },
+  { num: "03", title: "Receive Confirmation", desc: "Get an instant email or push notification confirmation with your appointment details." },
   { num: "04", title: "Visit the Clinic", desc: "Arrive at your scheduled time — no waiting in line to register." },
 ];
 
@@ -72,7 +72,7 @@ export function LandingPage() {
                 Smarter.
               </h1>
               <p className="text-green-100 text-lg sm:text-xl mb-8 leading-relaxed">
-                Book appointments online 24/7, receive instant SMS notifications, and experience hassle-free healthcare at Samuel P. Dizon Medical Clinic.
+                Book appointments online 24/7 and experience hassle-free healthcare at Samuel P. Dizon Medical Clinic.
               </p>
               {/* <div className="flex flex-col sm:flex-row gap-4">
                 <Link
@@ -307,7 +307,7 @@ export function LandingPage() {
                 <span className="text-white font-bold">MediSched</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Intelligent Cloud-Based Scheduling & SMS Notification Solution for Samuel P. Dizon Medical Clinic.
+                A Cloud-Based Scheduling Solution with Artificial Intelligence for Samuel P. Dizon Medical Clinic.
               </p>
             </div>
             <div>
@@ -323,9 +323,9 @@ export function LandingPage() {
             <div id="contact-info">
               <h4 className="text-white font-bold mb-4">Contact Us</h4>
               <ul className="space-y-3">
-                <li className="flex items-start gap-3 text-gray-400 text-sm">
+                <li className="flex items-center gap-3 text-gray-400 text-sm">
                   <MapPin className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span>2nd Floor Centrepoint Building, Magsaysay Drive Rizal Avenue, East Tapinac, Olongapo City</span>
+                  <span>2nd Floor Centrepoint Building, Rizal Avenue, East Tapinac, Olongapo City</span>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 text-sm">
                   <Phone className="w-4 h-4 text-green-500 flex-shrink-0" />

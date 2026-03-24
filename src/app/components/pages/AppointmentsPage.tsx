@@ -42,7 +42,7 @@ export function AppointmentsPage() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState<Appointment | null>(null);
-  const [form, setForm] = useState({ patientName: "", phone: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" });
+  const [form, setForm] = useState({ patientId: "", patientName: "", phone: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" });
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -63,18 +63,18 @@ export function AppointmentsPage() {
     }
   };
 
-  const openAdd = () => { setEditing(null); setForm({ patientName: "", phone: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" }); setShowModal(true); };
-  const openEdit = (apt: Appointment) => { setEditing(apt); setForm({ patientName: apt.patientName, phone: apt.phone, date: apt.date, time: apt.time, type: apt.type, notes: apt.notes, status: apt.status }); setShowModal(true); };
+  const openAdd = () => { setEditing(null); setForm({ patientId: "", patientName: "", phone: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" }); setShowModal(true); };
+  const openEdit = (apt: Appointment) => { setEditing(apt); setForm({ patientId: apt.patientId, patientName: apt.patientName, phone: apt.phone, date: apt.date, time: apt.time, type: apt.type, notes: apt.notes, status: apt.status }); setShowModal(true); };
 
   const handleSave = async () => {
-    if (!form.patientName || !form.date || !form.time) { toast.error("Please fill in all required fields."); return; }
+    if (!form.patientId || !form.patientName || !form.date || !form.time) { toast.error("Please fill in all required fields."); return; }
     setSaving(true);
     try {
       if (editing) {
         await apiFetch(`/appointments/${editing.id}`, { method: "PUT", body: JSON.stringify({ ...form }) });
         toast.success("Appointment updated!");
       } else {
-        await apiFetch("/appointments", { method: "POST", body: JSON.stringify({ ...form, patientId: `guest_${Date.now()}`, doctor: "Dr. Samuel P. Dizon" }) });
+        await apiFetch("/appointments", { method: "POST", body: JSON.stringify({ ...form, doctor: "Dr. Samuel P. Dizon" }) });
         toast.success("Appointment added!");
       }
       setShowModal(false);
@@ -224,6 +224,10 @@ export function AppointmentsPage() {
                 </div>
                 <div className="p-5 space-y-4">
                   <div className="grid grid-cols-2 gap-4">
+                    <div className="col-span-2">
+                      <label className="block text-xs font-semibold text-gray-600 mb-1">Patient ID *</label>
+                      <input value={form.patientId} onChange={(e) => setForm((p) => ({ ...p, patientId: e.target.value }))} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., pat_001" />
+                    </div>
                     <div className="col-span-2">
                       <label className="block text-xs font-semibold text-gray-600 mb-1">Patient Name *</label>
                       <input value={form.patientName} onChange={(e) => setForm((p) => ({ ...p, patientName: e.target.value }))} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Full name" />

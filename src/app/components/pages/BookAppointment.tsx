@@ -46,12 +46,20 @@ function getMinDate() {
 }
 
 export function BookAppointment() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  // Require authentication - redirect unauthenticated users to login
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
   const [step, setStep] = useState(1);
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
-  const { user } = useAuth();
-  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     type: "",
@@ -79,7 +87,7 @@ export function BookAppointment() {
       await apiFetch("/appointments", {
         method: "POST",
         body: JSON.stringify({
-          patientId: user?.patientId || `guest_${Date.now()}`,
+          patientId: user!.patientId,
           patientName: form.name,
           date: form.date,
           time: form.time,
@@ -373,12 +381,7 @@ export function BookAppointment() {
             </div>
           </div>
 
-          {/* Login prompt */}
-          {!user && (
-            <p className="text-center text-xs text-gray-400 mt-4">
-              Have an account? <Link to="/login" className="text-green-600 font-semibold hover:underline">Sign in</Link> to track your appointments.
-            </p>
-          )}
+
         </div>
       </div>
     </div>

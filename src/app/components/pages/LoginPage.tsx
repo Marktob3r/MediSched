@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { HeartPulse, Eye, EyeOff, Mail, Lock, User, Phone, AlertCircle, CheckCircle } from "lucide-react";
+import { HeartPulse, Eye, EyeOff, Mail, Lock, User, AlertCircle, CheckCircle } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "sonner";
 
@@ -9,7 +9,7 @@ export function LoginPage() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [showPwd, setShowPwd] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", confirmPassword: "" });
+  const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const { login, register } = useAuth();
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ export function LoginPage() {
       } else {
         if (form.password !== form.confirmPassword) { setError("Passwords do not match."); return; }
         if (form.password.length < 6) { setError("Password must be at least 6 characters."); return; }
-        const { error: err } = await register(form.name, form.email, form.phone, form.password);
+        const { error: err } = await register(form.name, form.email, "", form.password);
         if (err) { setError(err); return; }
         toast.success("Account created! Welcome to MediSched.");
         navigate("/patient");
@@ -162,19 +162,7 @@ export function LoginPage() {
                     </div>
                   </div>
 
-                  {mode === "register" && (
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-1.5">Mobile Number</label>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <input
-                          type="tel" name="phone" value={form.phone} onChange={handleChange}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-50"
-                          placeholder="+639XXXXXXXXX"
-                        />
-                      </div>
-                    </div>
-                  )}
+
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">Password</label>
