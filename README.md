@@ -1,4 +1,4 @@
-# MediSched: An Intelligent Cloud-Based Scheduling and SMS Notification Solution for Samuel P. Dizon Medical Clinic. 
+# MediSched: A Cloud-Based Scheduling Solution with Artificial Intelligence for Samuel P. Dizon Medical Clinic. 
 
 ## by Team SMTech | BSIT-3E
 
