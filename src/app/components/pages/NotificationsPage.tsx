@@ -23,6 +23,8 @@ const MESSAGE_TEMPLATES = [
   { label: "Follow-up", text: "Dear {name}, please don't forget your follow-up appointment. - Samuel P. Dizon Medical Clinic" },
 ];
 
+// Note: This page is deprecated as SMS features have been removed from the system.
+// Kept for reference but no longer in use.
 export function NotificationsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -56,9 +58,9 @@ export function NotificationsPage() {
     try {
       await apiFetch("/notifications/send", {
         method: "POST",
-        body: JSON.stringify({ patientId: form.patientId, patientName: form.patientName || "Unknown", phone: form.phone, type: "sms", message: form.message }),
+        body: JSON.stringify({ patientId: form.patientId, patientName: form.patientName || "Unknown", type: "email", message: form.message }),
       });
-      toast.success("SMS notification sent!");
+      toast.success("Notification sent!");
       setShowModal(false);
       setForm({ patientId: "", patientName: "", phone: "", message: "" });
       loadData();
@@ -85,11 +87,11 @@ export function NotificationsPage() {
       <div className="p-4 sm:p-6 lg:p-8 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-extrabold text-gray-900">SMS Notifications</h1>
+            <h1 className="text-2xl font-extrabold text-gray-900">Notifications</h1>
             <p className="text-gray-500 text-sm">{notifications.length} messages sent</p>
           </div>
           <button onClick={() => setShowModal(true)} className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition-all">
-            <Send className="w-4 h-4" /> Send SMS
+            <Send className="w-4 h-4" /> Send Notification
           </button>
         </div>
 
@@ -150,7 +152,7 @@ export function NotificationsPage() {
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-white rounded-2xl shadow-xl w-full max-w-lg">
                 <div className="flex items-center justify-between p-5 border-b">
-                  <h2 className="font-bold text-gray-900 flex items-center gap-2"><Send className="w-4 h-4 text-green-600" /> Send SMS Notification</h2>
+                  <h2 className="font-bold text-gray-900 flex items-center gap-2"><Send className="w-4 h-4 text-green-600" /> Send Notification</h2>
                   <button onClick={() => setShowModal(false)} className="p-2 hover:bg-gray-100 rounded-lg"><X className="w-4 h-4" /></button>
                 </div>
                 <div className="p-5 space-y-4">
@@ -198,7 +200,7 @@ export function NotificationsPage() {
                   <button onClick={() => setShowModal(false)} className="flex-1 border border-gray-200 text-gray-700 font-semibold py-2.5 rounded-xl hover:bg-gray-50 text-sm">Cancel</button>
                   <button onClick={handleSend} disabled={sending} className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-semibold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2">
                     {sending ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Send className="w-4 h-4" />}
-                    {sending ? "Sending..." : "Send SMS"}
+                    {sending ? "Sending..." : "Send"}
                   </button>
                 </div>
               </motion.div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import {
-  Search, Filter, Plus, Calendar, Clock, Phone, Edit2, Trash2,
+  Search, Filter, Plus, Calendar, Clock, Edit2, Trash2,
   CheckCircle, XCircle, AlertCircle, ChevronDown, Loader, X, Save,
   MessageSquare
 } from "lucide-react";
@@ -42,7 +42,7 @@ export function AppointmentsPage() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState<Appointment | null>(null);
-  const [form, setForm] = useState({ patientId: "", patientName: "", phone: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" });
+  const [form, setForm] = useState({ patientId: "", patientName: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" });
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -63,8 +63,8 @@ export function AppointmentsPage() {
     }
   };
 
-  const openAdd = () => { setEditing(null); setForm({ patientId: "", patientName: "", phone: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" }); setShowModal(true); };
-  const openEdit = (apt: Appointment) => { setEditing(apt); setForm({ patientId: apt.patientId, patientName: apt.patientName, phone: apt.phone, date: apt.date, time: apt.time, type: apt.type, notes: apt.notes, status: apt.status }); setShowModal(true); };
+  const openAdd = () => { setEditing(null); setForm({ patientId: "", patientName: "", date: "", time: "", type: "General Consultation", notes: "", status: "pending" }); setShowModal(true); };
+  const openEdit = (apt: Appointment) => { setEditing(apt); setForm({ patientId: apt.patientId, patientName: apt.patientName, date: apt.date, time: apt.time, type: apt.type, notes: apt.notes, status: apt.status }); setShowModal(true); };
 
   const handleSave = async () => {
     if (!form.patientId || !form.patientName || !form.date || !form.time) { toast.error("Please fill in all required fields."); return; }
@@ -167,7 +167,6 @@ export function AppointmentsPage() {
                             <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-700 font-bold text-sm">{apt.patientName[0]}</div>
                             <div>
                               <p className="text-sm font-semibold text-gray-900">{apt.patientName}</p>
-                              <p className="text-xs text-gray-400 flex items-center gap-1"><Phone className="w-3 h-3" />{apt.phone}</p>
                             </div>
                           </div>
                         </td>
@@ -232,10 +231,7 @@ export function AppointmentsPage() {
                       <label className="block text-xs font-semibold text-gray-600 mb-1">Patient Name *</label>
                       <input value={form.patientName} onChange={(e) => setForm((p) => ({ ...p, patientName: e.target.value }))} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Full name" />
                     </div>
-                    <div className="col-span-2">
-                      <label className="block text-xs font-semibold text-gray-600 mb-1">Phone</label>
-                      <input value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="+639XXXXXXXXX" />
-                    </div>
+
                     <div>
                       <label className="block text-xs font-semibold text-gray-600 mb-1">Date *</label>
                       <input type="date" value={form.date} min={getMinDate()} onChange={(e) => setForm((p) => ({ ...p, date: e.target.value }))} className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />

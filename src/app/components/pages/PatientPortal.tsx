@@ -3,12 +3,11 @@ import { Link, useNavigate } from "react-router";
 import { motion } from "motion/react";
 import {
   Calendar, Clock, CheckCircle, XCircle, AlertCircle,
-  Plus, Bell, User, LogOut, HeartPulse, ChevronRight,
+  Plus, Bell, User, LogOut, HeartPulse,
   FileText, Phone, Loader
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { apiFetch } from "../../api/client";
-import { PublicNavbar } from "../layout/PublicNavbar";
 
 interface Appointment {
   id: string; patientId: string; patientName: string;
@@ -74,8 +73,7 @@ export function PatientPortal() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-[Montserrat]">
-      <PublicNavbar />
-      <div className="pt-16">
+      <div>
         {/* Hero Header */}
         <div className="bg-gradient-to-r from-green-700 to-green-600 text-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -137,7 +135,7 @@ export function PatientPortal() {
                   tab === t ? "bg-green-600 text-white shadow-sm" : "text-gray-500 hover:text-gray-700"
                 }`}
               >
-                {t === "notifications" ? "SMS Log" : t.charAt(0).toUpperCase() + t.slice(1)}
+                {t.charAt(0).toUpperCase() + t.slice(1)}
                 {t === "upcoming" && upcoming.length > 0 && (
                   <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-full font-bold ${tab === t ? "bg-white/20 text-white" : "bg-green-100 text-green-700"}`}>{upcoming.length}</span>
                 )}
@@ -189,7 +187,7 @@ export function PatientPortal() {
                   {notifications.length === 0 ? (
                     <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
                       <Bell className="w-12 h-12 text-gray-200 mx-auto mb-3" />
-                      <p className="text-gray-500 font-medium">No SMS notifications yet</p>
+                      <p className="text-gray-500 font-medium">No notifications yet</p>
                     </div>
                   ) : notifications.map((notif, i) => (
                     <motion.div

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  Calendar, Clock, User, Phone, ChevronRight, ChevronLeft,
-  CheckCircle, HeartPulse, Stethoscope, AlertCircle, MessageSquare
+  Calendar, Clock, User, ChevronRight, ChevronLeft,
+  CheckCircle, Stethoscope, AlertCircle
 } from "lucide-react";
-import { PublicNavbar } from "../layout/PublicNavbar";
 import { apiFetch } from "../../api/client";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "sonner";
@@ -98,7 +97,7 @@ export function BookAppointment() {
         }),
       });
       setDone(true);
-      toast.success("Appointment booked! An SMS confirmation will be sent to your phone.");
+      toast.success("Appointment booked! Please check your email for confirmation.");
     } catch (err: any) {
       toast.error(err.message || "Booking failed. Please try again.");
     } finally {
@@ -118,7 +117,7 @@ export function BookAppointment() {
   if (done) {
     return (
       <div className="min-h-screen bg-green-50 font-[Montserrat]">
-        <PublicNavbar />
+        
         <div className="pt-24 flex items-center justify-center min-h-screen p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -150,10 +149,7 @@ export function BookAppointment() {
                 <span className="text-gray-600">Dr. Samuel P. Dizon</span>
               </div>
             </div>
-            <div className="flex items-start gap-2 bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6 text-left">
-              <MessageSquare className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-              <p className="text-blue-700 text-xs">An SMS confirmation will be sent to <strong>{form.phone}</strong> once your appointment is confirmed by the clinic.</p>
-            </div>
+
             <div className="grid grid-cols-2 gap-3">
               <button onClick={() => { setDone(false); setStep(1); setForm({ type: "", date: "", time: "", name: user?.name || "", phone: "", email: user?.email || "", notes: "" }); }} className="border border-green-300 text-green-700 font-semibold py-3 rounded-xl hover:bg-green-50 transition-all text-sm">
                 Book Another
@@ -170,7 +166,7 @@ export function BookAppointment() {
 
   return (
     <div className="min-h-screen bg-green-50 font-[Montserrat]">
-      <PublicNavbar />
+      
       <div className="pt-24 pb-12 px-4">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
@@ -244,7 +240,7 @@ export function BookAppointment() {
                     <p className="text-sm text-gray-500 mb-5">Select your preferred date and time slot.</p>
                     <div className="space-y-5">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 items-center gap-2">
                           <Calendar className="w-4 h-4 text-green-600" /> Appointment Date
                         </label>
                         <input
@@ -255,7 +251,7 @@ export function BookAppointment() {
                       </div>
                       {form.date && (
                         <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                          <label className="block text-sm font-semibold text-gray-700 mb-2 items-center gap-2">
                             <Clock className="w-4 h-4 text-green-600" /> Available Time Slots
                           </label>
                           <div className="grid grid-cols-4 gap-2">
@@ -303,15 +299,7 @@ export function BookAppointment() {
                             placeholder="Juan dela Cruz" />
                         </div>
                       </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-1.5">Mobile Number * <span className="text-gray-400 font-normal">(for SMS notifications)</span></label>
-                        <div className="relative">
-                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                          <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} required
-                            className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-50"
-                            placeholder="+639XXXXXXXXX" />
-                        </div>
-                      </div>
+
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">Notes / Chief Complaint <span className="text-gray-400 font-normal">(optional)</span></label>
                         <textarea value={form.notes} onChange={(e) => update("notes", e.target.value)} rows={3}
@@ -345,7 +333,7 @@ export function BookAppointment() {
                     </div>
                     <div className="mt-4 flex items-start gap-2 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                       <AlertCircle className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                      <p className="text-yellow-700 text-xs">Your appointment status will be <strong>pending</strong> until confirmed by the clinic staff. You will receive an SMS notification.</p>
+                      <p className="text-yellow-700 text-xs">Your appointment status will be <strong>pending</strong> until confirmed by the clinic staff. Check your email for updates.</p>
                     </div>
                   </div>
                 )}

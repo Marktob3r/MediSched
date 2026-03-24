@@ -35,7 +35,7 @@ clinic staff with real-time oversight of daily operations and the ability to gen
 
 # System Features
 
-1. Automated SMS Notification System: 
+1. Email Notification System (SMS removed): 
    For sending automated reminders and booking confirmations.
 
 2. 24/7 Appointment Booking Engine: 

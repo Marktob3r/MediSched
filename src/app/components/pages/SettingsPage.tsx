@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Lock, Bell, Shield, Save, HeartPulse } from "lucide-react";
+import { User, Lock, Bell, Shield, Save } from "lucide-react";
 import { AdminLayout } from "../layout/AdminSidebar";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "sonner";
@@ -7,7 +7,6 @@ import { toast } from "sonner";
 export function SettingsPage() {
   const { user } = useAuth();
   const [tab, setTab] = useState<"profile" | "notifications" | "security">("profile");
-  const [smsEnabled, setSmsEnabled] = useState(true);
   const [reminderHours, setReminderHours] = useState(24);
 
   const tabs = [
@@ -77,24 +76,8 @@ export function SettingsPage() {
 
         {tab === "notifications" && (
           <div className="bg-white border border-gray-100 rounded-2xl p-6 space-y-5">
-            <h3 className="font-bold text-gray-900">SMS Notification Settings</h3>
+            <h3 className="font-bold text-gray-900">Notification Settings</h3>
             <div className="space-y-4">
-              {[
-                { label: "Enable SMS Notifications", desc: "Send SMS to patients for appointment updates", checked: smsEnabled, toggle: () => setSmsEnabled(!smsEnabled) },
-                { label: "Booking Confirmation SMS", desc: "Send SMS when a new appointment is booked", checked: true, toggle: () => {} },
-                { label: "Status Update SMS", desc: "Send SMS when appointment status changes", checked: true, toggle: () => {} },
-                { label: "Appointment Reminders", desc: "Send reminder SMS before appointments", checked: true, toggle: () => {} },
-              ].map(({ label, desc, checked, toggle }) => (
-                <div key={label} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">{label}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{desc}</p>
-                  </div>
-                  <button onClick={toggle} className={`relative w-11 h-6 rounded-full transition-colors ${checked ? "bg-green-600" : "bg-gray-200"}`}>
-                    <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-all ${checked ? "left-5.5" : "left-0.5"}`} style={{ left: checked ? "calc(100% - 1.375rem)" : "0.125rem" }} />
-                  </button>
-                </div>
-              ))}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Reminder Lead Time</label>
                 <div className="flex gap-2">

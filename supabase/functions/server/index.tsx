@@ -47,11 +47,7 @@ const SEED_APPOINTMENTS = [
   { id: "apt_008", patientId: "pat_003", patientName: "Roberto Reyes", date: "2026-03-27", time: "15:00", type: "Laboratory Request", doctor: "Dr. Samuel P. Dizon", status: "confirmed", notes: "CBC and lipid panel", phone: "+639501112233", createdAt: "2026-03-23T09:00:00Z" },
 ];
 
-const SEED_NOTIFICATIONS = [
-  { id: "notif_001", patientId: "pat_001", patientName: "Juan dela Cruz", phone: "+639171234567", type: "sms", message: "Your appointment on March 25 at 9:00 AM is confirmed. Samuel P. Dizon Medical Clinic.", status: "sent", sentAt: "2026-03-20T08:05:00Z" },
-  { id: "notif_002", patientId: "pat_002", patientName: "Maria Santos", phone: "+639289876543", type: "sms", message: "Reminder: Your appointment is tomorrow, March 25 at 10:00 AM. Samuel P. Dizon Medical Clinic.", status: "sent", sentAt: "2026-03-24T08:00:00Z" },
-  { id: "notif_003", patientId: "pat_004", patientName: "Ana Reyes", phone: "+639175556677", type: "sms", message: "Your appointment on March 26 at 9:30 AM is confirmed. Samuel P. Dizon Medical Clinic.", status: "sent", sentAt: "2026-03-22T11:05:00Z" },
-];
+const SEED_NOTIFICATIONS = [];
 
 const SEED_SCHEDULE = {
   workDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -160,11 +156,7 @@ app.post("/make-server-e89e5eb2/appointments", async (c) => {
     appointments.push(newApt);
     await kv.set(APPOINTMENTS_KEY, appointments);
 
-    // Create notification
-    const notifications: any[] = (await kv.get(NOTIFICATIONS_KEY)) || [];
-    const notif = { id: `notif_${Date.now()}`, patientId: body.patientId, patientName: body.patientName, phone: body.phone, type: "sms", message: `Your appointment request for ${body.date} at ${body.time} has been received. We will confirm shortly. - Samuel P. Dizon Medical Clinic`, status: "sent", sentAt: new Date().toISOString() };
-    notifications.push(notif);
-    await kv.set(NOTIFICATIONS_KEY, notifications);
+    // Note: SMS notifications removed - use email instead
 
     return c.json(newApt, 201);
   } catch (err) {
@@ -185,11 +177,7 @@ app.put("/make-server-e89e5eb2/appointments/:id", async (c) => {
 
     // Send status notification if status changed
     if (body.status && body.status !== appointments[idx].status) {
-      const notifications: any[] = (await kv.get(NOTIFICATIONS_KEY)) || [];
-      const statusMsg: Record<string, string> = { confirmed: "confirmed ✓", cancelled: "cancelled", completed: "completed" };
-      const notif = { id: `notif_${Date.now()}`, patientId: appointments[idx].patientId, patientName: appointments[idx].patientName, phone: appointments[idx].phone, type: "sms", message: `Your appointment on ${appointments[idx].date} at ${appointments[idx].time} has been ${statusMsg[body.status] || body.status}. - Samuel P. Dizon Medical Clinic`, status: "sent", sentAt: new Date().toISOString() };
-      notifications.push(notif);
-      await kv.set(NOTIFICATIONS_KEY, notifications);
+      // Note: SMS notifications removed - use email instead
     }
     return c.json(appointments[idx]);
   } catch (err) {

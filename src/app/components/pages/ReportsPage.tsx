@@ -58,7 +58,7 @@ export function ReportsPage() {
   const kpiCards = summary ? [
     { label: "Total Appointments", value: summary.totalAppointments, icon: Calendar, color: "text-green-600", bg: "bg-green-50", border: "border-green-200" },
     { label: "Total Patients", value: summary.totalPatients, icon: Users, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-200" },
-    { label: "SMS Sent", value: summary.totalNotifications, icon: Activity, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-200" },
+    { label: "Notifications Sent", value: summary.totalNotifications, icon: Activity, color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-200" },
     { label: "This Month", value: summary.monthAppointments, icon: TrendingUp, color: "text-orange-600", bg: "bg-orange-50", border: "border-orange-200" },
     { label: "Confirmed", value: summary.byStatus?.confirmed || 0, icon: CheckCircle, color: "text-green-600", bg: "bg-green-50", border: "border-green-200" },
     { label: "Pending", value: summary.byStatus?.pending || 0, icon: Clock, color: "text-yellow-600", bg: "bg-yellow-50", border: "border-yellow-200" },

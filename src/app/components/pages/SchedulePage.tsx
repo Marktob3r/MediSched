@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+  import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { motion } from "motion/react";
 import { Clock, CheckCircle, Save, Loader, Calendar, ChevronLeft, ChevronRight, AlertCircle } from "lucide-react";
 import { AdminLayout } from "../layout/AdminSidebar";
 import { apiFetch } from "../../api/client";
@@ -217,7 +216,7 @@ export function SchedulePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-3 items-center gap-2">
                   <Clock className="w-4 h-4 text-green-600" /> Clinic Hours
                 </label>
                 <div className="grid grid-cols-2 gap-3">

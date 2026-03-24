@@ -235,13 +235,6 @@ export function LoginPage() {
                   </>
                 )}
 
-                <p className="text-center text-xs text-gray-400 mt-5">
-                  {mode === "login" ? "Don't have an account? " : "Already have an account? "}
-                  <button onClick={() => setMode(mode === "login" ? "register" : "login")} className="text-green-600 hover:underline">
-                    {mode === "login" ? "Register here" : "Sign in"}
-                  </button>
-                </p>
-
                 {/* <div className="text-center mt-3">
                   <Link to="/book" className="text-xs text-gray-400 hover:text-green-600 transition-colors">
                     Book without an account →
